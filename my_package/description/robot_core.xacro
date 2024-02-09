@@ -1,6 +1,17 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <!-- Body dimensions -->
+    <xacro:property name="body_x" value="0.381"/>
+    <xacro:property name="body_y" value="0.191"/>
+    <xacro:property name="body_z" value="0.09242"/>
+
+    <!-- Wheel dim -->
+    <xacro:property name="wheel_radius" value="0.04918"/>
+    <xacro:property name="wheel_length" value="0.03935"/>
+    <xacro:property name="wheel_z"  value="-0.01492"/>
+
+   
 
     <xacro:include filename="inertial_macros.xacro"/>
 
@@ -58,6 +69,10 @@
 
     </link>
     
+    <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
+
     <!-- Left Front Wheel -->
 
     <joint name="left_front_wheel_joint" type="continuous">
@@ -65,6 +80,9 @@
         <child link="left_front_wheel"/>
         <origin xyz="0.09525 0.111 0" rpy="-${pi/2} 0 0"/>
         <axis xyz="0 0 1"/>
+        <limit effort="1000" velocity="1000"/>
+        <dynamics damping="1.0" friction="1.0"/>
+
     </joint>
 
     <link name="left_front_wheel">
@@ -84,6 +102,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="left_front_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <!-- Right Front Wheel -->
 
     <joint name="right_front_wheel_joint" type="continuous">
@@ -91,6 +113,8 @@
         <child link="right_front_wheel"/>
         <origin xyz="0.09525 -0.111 0" rpy="${pi/2} 0 0"/>
         <axis xyz="0 0 -1"/>
+        <limit effort="1000" velocity="1000"/>
+        <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
     <link name="right_front_wheel">
@@ -110,6 +134,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="right_front_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <!-- Left Back Wheel -->
 
     <joint name="left_back_wheel_joint" type="continuous">
@@ -117,6 +145,8 @@
         <child link="left_back_wheel"/>
         <origin xyz="-0.09525 0.111 0" rpy="-${pi/2} 0 0"/>
         <axis xyz="0 0 1"/>
+        <limit effort="1000" velocity="1000"/>
+        <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
     <link name="left_back_wheel">
@@ -136,6 +166,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="left_back_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <!-- Right back Wheel -->
 
     <joint name="right_back_wheel_joint" type="continuous">
@@ -143,6 +177,8 @@
         <child link="right_back_wheel"/>
         <origin xyz="-0.09525 -0.111 0" rpy="${pi/2} 0 0"/>
         <axis xyz="0 0 -1"/>
+        <limit effort="1000" velocity="1000"/>
+        <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
     <link name="right_back_wheel">
@@ -162,5 +198,8 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="right_back_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
 
 </robot>
